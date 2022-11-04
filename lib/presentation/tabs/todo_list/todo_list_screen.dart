@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:my_todo_app/data/local_data/storage.dart';
 import 'package:my_todo_app/data/my_repository.dart';
@@ -326,7 +325,6 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
       },
     );
   }
-
   void myCustomUrgentDialog(VoidCallback update) {
     showDialog(
       barrierDismissible: false,
@@ -427,7 +425,6 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
       },
     );
   }
-
   void myBottomSheet() {
     showModalBottomSheet(
       context: context,
@@ -443,8 +440,7 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
         return StatefulBuilder(
           builder: (BuildContext context, setState) {
             return Container(
-              padding: EdgeInsets.only(
-                  bottom: MediaQuery.of(context).viewInsets.bottom),
+              padding: EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
               decoration: BoxDecoration(
                 color: MyColors.C_363636,
                 borderRadius: BorderRadius.only(
