@@ -36,8 +36,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
         title: Text(
           tr("settings"),
-          style: GoogleFonts.lato()
-              .copyWith(fontSize: 20.sp, color: MyColors.white_87),
+          style: GoogleFonts.lato().copyWith(fontSize: 20.sp, color: MyColors.white_87),
         ),
         centerTitle: true,
         elevation: 0,
