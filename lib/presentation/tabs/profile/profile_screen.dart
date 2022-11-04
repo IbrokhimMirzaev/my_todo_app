@@ -15,6 +15,7 @@ import 'package:my_todo_app/presentation/tabs/tab_box/widgets/my_button.dart';
 import 'package:my_todo_app/utils/colors.dart';
 import 'package:my_todo_app/utils/icons.dart';
 import 'package:my_todo_app/utils/utility_functions.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({Key? key}) : super(key: key);
@@ -58,6 +59,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   getFromGallery() async {
+    bool hasPermission = await _requestGetFromGalleryPermission();
+    if (!hasPermission) return;
+
     imageFile = await _picker.pickImage(
       maxHeight: 200,
       maxWidth: 200,
@@ -75,6 +79,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 
   getFromCamera() async {
+    bool hasPermission = await _requestGetFromCameraPermission();
+    if (!hasPermission) return;
+
     imageFile = await _picker.pickImage(
       maxHeight: 200,
       maxWidth: 200,
@@ -87,6 +94,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
         imagePath = imageFile!.path;
       });
     }
+  }
+
+  Future<bool> _requestGetFromGalleryPermission() async {
+    await Permission.storage.status;
+    return await Permission.storage.request().isGranted;
+  }
+
+  Future<bool> _requestGetFromCameraPermission() async {
+    await Permission.camera.request();
+    return await Permission.camera.request().isGranted;
   }
 
   @override
@@ -324,20 +341,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Column(
                 children: [
                   ListTile(
-                      leading:
-                          Icon(Icons.photo_library, color: MyColors.white_87),
-                      title: Text(tr("gallery"),
-                          style: GoogleFonts.lato()
-                              .copyWith(color: MyColors.white_87)),
+                      leading: Icon(Icons.photo_library, color: MyColors.white_87),
+                      title: Text(tr("gallery"), style: GoogleFonts.lato().copyWith(color: MyColors.white_87)),
                       onTap: () {
                         getFromGallery();
                         Navigator.of(context).pop();
                       }),
                   ListTile(
                     leading: Icon(Icons.photo_camera, color: MyColors.white_87),
-                    title: Text(tr("camera"),
-                        style: GoogleFonts.lato()
-                            .copyWith(color: MyColors.white_87)),
+                    title: Text(tr("camera"), style: GoogleFonts.lato().copyWith(color: MyColors.white_87)),
                     onTap: () {
                       getFromCamera();
                       Navigator.of(context).pop();
