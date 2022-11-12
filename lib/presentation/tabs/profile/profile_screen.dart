@@ -105,16 +105,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
-  Future<bool> _requestGetFromGalleryPermission() async {
-    await Permission.storage.status;
-    return await Permission.storage.request().isGranted;
-  }
-
-  Future<bool> _requestGetFromCameraPermission() async {
-    await Permission.camera.request();
-    return await Permission.camera.request().isGranted;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
