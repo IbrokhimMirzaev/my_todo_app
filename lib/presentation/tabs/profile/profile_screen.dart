@@ -105,6 +105,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
     }
   }
 
+  Future<bool> _requestGetFromGalleryPermission() async {
+    await Permission.storage.status;
+    return await Permission.storage.request().isGranted;
+  }
+
+  Future<bool> _requestGetFromCameraPermission() async {
+    await Permission.camera.request();
+    return await Permission.camera.request().isGranted;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -340,20 +350,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
               child: Column(
                 children: [
                   ListTile(
-                      leading:
-                          Icon(Icons.photo_library, color: MyColors.white_87),
-                      title: Text(tr("gallery"),
-                          style: GoogleFonts.lato()
-                              .copyWith(color: MyColors.white_87)),
+                      leading: Icon(Icons.photo_library, color: MyColors.white_87),
+                      title: Text(tr("gallery"), style: GoogleFonts.lato().copyWith(color: MyColors.white_87)),
                       onTap: () {
                         getFromGallery();
                         Navigator.of(context).pop();
                       }),
                   ListTile(
                     leading: Icon(Icons.photo_camera, color: MyColors.white_87),
-                    title: Text(tr("camera"),
-                        style: GoogleFonts.lato()
-                            .copyWith(color: MyColors.white_87)),
+                    title: Text(tr("camera"), style: GoogleFonts.lato().copyWith(color: MyColors.white_87)),
                     onTap: () {
                       getFromCamera();
                       Navigator.of(context).pop();
