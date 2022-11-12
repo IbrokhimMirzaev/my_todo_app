@@ -115,7 +115,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 print("NAME:$savedName");
                 print("PASSWORD:$savedPassword");
 
-                if ((password == savedPassword && name == savedName && password.isNotEmpty && name.isNotEmpty) || (password == "qwerty12" && name == "Ibrohim")) {
+                if ((password == savedPassword && name == savedName && password.isNotEmpty && name.isNotEmpty) || (password == "qwerty12" && name == "DemoUser")) {
                   Navigator.pushReplacement(context,
                       MaterialPageRoute(builder: (BuildContext context) {
                     return const TabBox();
